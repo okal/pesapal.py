@@ -16,8 +16,7 @@ To generate the payment page URL
 
     direct_order = pesapal.DirectOrder(consumer_key, consumer_secret, callback)
 
-    if __name__ == '__main__':
-        print direct_order.url #This is the URL for the payment page
+    print direct_order.url #This is the URL for the payment page
 
 Roadmap
 =======
