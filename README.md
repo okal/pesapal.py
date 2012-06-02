@@ -31,4 +31,4 @@ License
 
 Pesapal.py is Open Source Software, released under the terms of the [MIT License](http://www.opensource.org/licenses/mit-license.php).
 
-&copy; [Okal Otieno]('https://twitter.com/okalotieno'), 2012.
+&copy; [Okal Otieno](https://twitter.com/okalotieno), 2012.
