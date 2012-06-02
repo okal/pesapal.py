@@ -10,10 +10,6 @@ import oauth
 from cgi import escape
 
 
-class CallbackNotFound(Exception):
-    pass
-
-
 class DirectOrder(object):
     """
     Generate the oauth link for the payment page.
@@ -23,13 +19,10 @@ class DirectOrder(object):
         self,
         consumer_key,
         consumer_secret,
+        callback,
         token=None,
         params=None,
-        products=None,
-        callback=None):
-
-        if not callback:
-            raise CallbackNotFound
+        products=None):
 
         api_endpoint = 'https://www.pesapal.com/api/PostPesapalDirectOrderV4'
         consumer_key = consumer_key
