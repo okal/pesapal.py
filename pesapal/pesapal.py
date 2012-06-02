@@ -11,6 +11,10 @@ from xml.etree import ElementTree as ET
 from cgi import escape
 
 
+class IncompleteInformation(Exception):
+    pass
+
+
 class DirectOrder(object):
     """
     Generate the oauth link for the payment page.
