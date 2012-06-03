@@ -7,8 +7,13 @@ A library to interact with the Pesapal API from python applications.
 """
 
 import oauth
+from oauth import OAuthConsumer
 from xml.etree import ElementTree as ET
 from cgi import escape
+
+
+class InvalidParameter(Exception):
+    pass
 
 
 class IncompleteInformation(Exception):
@@ -86,3 +91,50 @@ class DirectOrder(object):
         url.set_parameter('pesapal_request_data', post_xml)
         url.sign_request(signature_method, consumer, token)
         self.url = url.to_url()
+
+
+class PaymentStatus(object):
+    """
+    Query the status of the Pesapal payment
+    """
+    def __init__(
+        self,
+        oauth_consumer,
+        pesapal_merchant_reference,
+        pesapal_transaction_tracking_id):
+
+        signature_method = oauth.OAuthSignatureMethod_HMAC_SHA1()
+        api_endpoint = 'https://www.pesapal.com/API/QueryPaymentStatus'
+
+        url = oauth.OAuthRequest.from_consumer_and_token(
+            oauth_consumer,
+            http_url=api_endpoint,
+            http_method='GET')
+
+        url.set_parameter(
+            'pesapal_merchant_reference',
+            pesapal_merchant_reference)
+
+        url.set_parameter(
+            'pesapal_transaction_tracking_id',
+            pesapal_transaction_tracking_id)
+
+        url.sign_request(signature_method, oauth_consumer, token=None)
+        self.url = url.to_url()
+
+    @property
+    def message(self):
+        """
+        The status message returned by Pesapal.
+        Possible values are <PENDING|COMPLETED|FAILED|INVALID>.
+        Incorrect/invalid parameters result in an exception.
+        """
+        from urllib2 import urlopen
+
+        f = urlopen(self.url)
+        response = f.read()
+
+        if response.startswith('Problem:'):
+            raise InvalidParameter(response)
+        else:
+            return response
