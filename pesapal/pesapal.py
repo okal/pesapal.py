@@ -49,9 +49,9 @@ class DirectOrder(object):
 
         post_xml = ET.Element('PesapalDirectOrderInfo')
 
-        post_xml.attrib['xmlns:xsi'] = "http://www.w3.org/2001/XMLSchema-instance"
-        post_xml.attrib['xmlns:xsd'] = "http://www.w3.org/2001/XMLSchema"
-        post_xml.attrib['xmlns'] = "http://www.pesapal.com"
+        post_xml.attrib['xmlns:xsi'] = 'http://www.w3.org/2001/XMLSchema-instance'
+        post_xml.attrib['xmlns:xsd'] = 'http://www.w3.org/2001/XMLSchema'
+        post_xml.attrib['xmlns'] = 'http://www.pesapal.com'
         post_xml.attrib['Type'] = 'MERCHANT'
 
         post_xml.attrib['Amount'] = str(amount)
@@ -65,7 +65,7 @@ class DirectOrder(object):
             post_xml.attrib['LastName'] = last_name
 
         if currency:
-            post_xml.attrib['Currency'] = currency #Currency ISO code
+            post_xml.attrib['Currency'] = currency  # Currency ISO code
 
         if email:
             post_xml.attrib['Email'] = email
