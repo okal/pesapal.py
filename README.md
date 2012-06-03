@@ -15,6 +15,8 @@ API Methods
     consumer_key ='lhiP9QWtQQsXWU+G5HdFHEUr41COHMiI'  # Demo key. Replace with your own, provided by Pesapal
     consumer_secret = '5k6xJ7E0G5JFgUowlc+13SFEfkY='  # Demo consumer secret. Replace with your own.
 
+    oauth_consumer = pesapal.OAuthConsumer(consumer_key, consumer_secret)
+
     reference = 123  # Order reference number
     description = 'An order'  # Order description
     amount = 1199.00  # The total cost of the order
@@ -23,8 +25,7 @@ API Methods
     email = 'email@example.com'  # You must supply at least one of either a phone number or email
     phone_number = '012345678'
     direct_order = pesapal.DirectOrder(
-        consumer_key,
-        consumer_secret,
+        oauth_consumer,
         reference,
         description,
         amount,

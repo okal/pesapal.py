@@ -27,8 +27,7 @@ class DirectOrder(object):
 
     def __init__(
         self,
-        consumer_key,
-        consumer_secret,
+        oauth_consumer,
         reference,
         description,
         amount,
@@ -47,10 +46,8 @@ class DirectOrder(object):
 
         api_endpoint = 'https://www.pesapal.com/api/PostPesapalDirectOrderV4'
 
-        consumer_key = consumer_key
-        consumer_secret = consumer_secret
         signature_method = oauth.OAuthSignatureMethod_HMAC_SHA1()
-        consumer = oauth.OAuthConsumer(consumer_key, consumer_secret)
+        consumer = oauth_consumer
 
         post_xml = ET.Element('PesapalDirectOrderInfo')
 
